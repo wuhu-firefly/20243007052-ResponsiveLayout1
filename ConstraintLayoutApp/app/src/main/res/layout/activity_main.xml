@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Part 2: Responsive layout built with ConstraintLayout.
+
+    The root and the inner containers are ConstraintLayouts.
+    Views are positioned with constraints relative to the parent and to
+    other views. Weighted chains (layout_constraintHorizontal_weight)
+    distribute the four blocks and the two buttons equally, so the layout
+    grows / shrinks with the available screen space.
+
+    Design (top to bottom):
+      - dark app bar          -> "Lab 1"
+      - white title bar       -> "Responsive Layout 1"
+      - four coloured blocks  -> "This" (red), "is" (blue), "my" (purple), "first" (yellow)
+      - black text area       -> "Android Application"
+      - white bottom area     -> two purple rounded buttons "Change" / "Cancel"
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <!-- Top dark app bar (inner ConstraintLayout) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/app_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/app_bar"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_bar_title"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- White title bar (inner ConstraintLayout) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/title_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_bar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/responsive_title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Four coloured blocks: weighted horizontal chain (equal weights) -->
+    <TextView
+        android:id="@+id/block_this"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/red_block"
+        android:gravity="center"
+        android:text="@string/block_this"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/text_android"
+        app:layout_constraintEnd_toStartOf="@id/block_is"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_bar" />
+
+    <TextView
+        android:id="@+id/block_is"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/blue_block"
+        android:gravity="center"
+        android:text="@string/block_is"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/text_android"
+        app:layout_constraintEnd_toStartOf="@id/block_my"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/block_this"
+        app:layout_constraintTop_toBottomOf="@id/title_bar" />
+
+    <TextView
+        android:id="@+id/block_my"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/purple_block"
+        android:gravity="center"
+        android:text="@string/block_my"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/text_android"
+        app:layout_constraintEnd_toStartOf="@id/block_first"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/block_is"
+        app:layout_constraintTop_toBottomOf="@id/title_bar" />
+
+    <TextView
+        android:id="@+id/block_first"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/yellow_block"
+        android:gravity="center"
+        android:text="@string/block_first"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/text_android"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/block_my"
+        app:layout_constraintTop_toBottomOf="@id/title_bar" />
+
+    <!-- Black text area -->
+    <TextView
+        android:id="@+id/text_android"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:gravity="center"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:text="@string/android_application"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/block_first" />
+
+    <!-- Bottom area with the two buttons (inner ConstraintLayout, weighted chain) -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/button_area"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_android">
+
+        <Button
+            android:id="@+id/button_change"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/rounded_purple_button"
+            android:text="@string/change"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_cancel"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/rounded_purple_button"
+            android:text="@string/cancel"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/button_change"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
